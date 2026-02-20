@@ -1,5 +1,5 @@
 from fastapi import FastAPI, BackgroundTasks
-from app.scraper import run_scraper
+from scraper import run_scraper
 
 app = FastAPI(title="Facebook Marketplace Scraper")
 
@@ -14,3 +14,4 @@ def run(background_tasks: BackgroundTasks):
         "status": "started",
         "message": "Scraper running in background"
     }
+
