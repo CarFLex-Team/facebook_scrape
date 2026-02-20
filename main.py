@@ -1,13 +1,16 @@
 from fastapi import FastAPI, BackgroundTasks
-from scraper import run_scraper
+from app.scraper import run_scraper
 
-app = FastAPI(title="FB Marketplace Scraper API")
+app = FastAPI(title="Facebook Marketplace Scraper")
 
 @app.get("/")
-def root():
-    return {"status": "running"}
+def health():
+    return {"status": "ok"}
 
 @app.post("/run")
 def run(background_tasks: BackgroundTasks):
     background_tasks.add_task(run_scraper)
-    return {"status": "started"}
+    return {
+        "status": "started",
+        "message": "Scraper running in background"
+    }
